@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Logger\Logger;
+
 class Router implements RouterInterface
 {
     protected $routes = [];
@@ -19,6 +21,7 @@ class Router implements RouterInterface
         $path = $request->getPath();
 
         if (!isset($this->routes[$method][$path])) {
+            Logger::log('error', 'Controller class does not exists', __DIR__ . '/../../logs/');
             throw new \Exception('Route not found');
         }
 

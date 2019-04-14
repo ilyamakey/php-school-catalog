@@ -6,6 +6,7 @@ use App\Http\RequestInterface;
 use App\Http\RouteInterface;
 use App\Http\RouterInterface;
 use App\Views\ViewInterface;
+use App\Logger\Logger;
 
 class Application
 {
@@ -34,6 +35,7 @@ class Application
         $class = $route->getClass();
 
         if (!class_exists($class)) {
+            Logger::log('error', 'Controller class does not exists', __DIR__ . '../logs/');
             throw new \Exception('Controller class does not exists');
         }
 
@@ -66,7 +68,9 @@ class Application
         } elseif (is_string($result)) {
             echo $result;
         } else {
+            Logger::log('error','Unsuported type in render method', __DIR__ . '/../logs/');
             throw new \Exception('Unsuported type');
+
         }
     }
 }

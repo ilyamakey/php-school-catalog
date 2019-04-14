@@ -11,3 +11,4 @@ $app = new Application($router);
 
 $request = new Request;
 $app->handleRequest($request);
+

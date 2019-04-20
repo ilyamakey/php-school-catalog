@@ -6,5 +6,8 @@ namespace App\Logger;
 
 interface LoggerInterface
 {
-    public static function log($type, $message, $logPath);
+    public function __construct(string $logPath);
+
+    public function log(string $type, string $message);
+
 }

@@ -35,7 +35,9 @@ class Application
         $class = $route->getClass();
 
         if (!class_exists($class)) {
-            Logger::log('error', 'Controller class does not exists', __DIR__ . '../logs/');
+
+            (new Logger(__DIR__ . '../logs/'))->log('Controller class does not exists');
+
             throw new \Exception('Controller class does not exists');
         }
 
@@ -68,7 +70,7 @@ class Application
         } elseif (is_string($result)) {
             echo $result;
         } else {
-            Logger::log('error','Unsuported type in render method', __DIR__ . '/../logs/');
+            (new Logger(__DIR__ . '../logs/'))->log('Controller class does not exists');
             throw new \Exception('Unsuported type');
 
         }

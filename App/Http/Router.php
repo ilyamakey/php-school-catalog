@@ -21,7 +21,7 @@ class Router implements RouterInterface
         $path = $request->getPath();
 
         if (!isset($this->routes[$method][$path])) {
-            Logger::log('error', 'Controller class does not exists', __DIR__ . '/../../logs/');
+            (new Logger(__DIR__ . '/../../logs/'))->log('Controller class does not exists');
             throw new \Exception('Route not found');
         }
 
